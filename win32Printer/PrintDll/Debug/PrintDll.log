@@ -1,0 +1,8 @@
+﻿  PrintDll.cpp
+d:\workspace\c++\printdll\printdll\printdll.cpp(19): warning C4996: 'mbstowcs': This function or variable may be unsafe. Consider using mbstowcs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(931): note: 参见“mbstowcs”的声明
+d:\workspace\c++\printdll\printdll\printdll.cpp(26): warning C4996: 'mbstowcs': This function or variable may be unsafe. Consider using mbstowcs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(931): note: 参见“mbstowcs”的声明
+    正在创建库 D:\workspace\c++\PrintDll\Debug\PrintDll.lib 和对象 D:\workspace\c++\PrintDll\Debug\PrintDll.exp
+  PrintDll.vcxproj -> D:\workspace\c++\PrintDll\Debug\PrintDll.dll
+  PrintDll.vcxproj -> D:\workspace\c++\PrintDll\Debug\PrintDll.pdb (Partial PDB)
