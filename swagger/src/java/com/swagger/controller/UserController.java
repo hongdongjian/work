@@ -2,8 +2,8 @@ package com.swagger.controller;
 
 import com.swagger.entity.User;
 import com.swagger.service.UserService;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,39 +24,6 @@ public class UserController {
 
     @Resource
     UserService userService;
-
-//    @RequestMapping("/save")
-//    @ResponseBody
-//    public Map<String, String> save() {
-//        Map<String, String> map = new HashMap<String, String>();
-//        try {
-//            User user = new User();
-//            user.setPassword("123456");
-//            user.setSex("boy");
-//            user.setUsername("dj");
-//            userService.save(user);
-//            map.put("result", "success");
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            map.put("result", "failed");
-//        }
-//        return map;
-//    }
-//
-//    @RequestMapping("/list")
-//    @ResponseBody
-//    public Map<String, Object> list() {
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        try {
-//            List<User> list = list = userService.getAll();
-//            map.put("result", "success");
-//            map.put("data", list);
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            map.put("result", "failed");
-//        }
-//        return map;
-//    }
 
     @ResponseBody
     @RequestMapping(

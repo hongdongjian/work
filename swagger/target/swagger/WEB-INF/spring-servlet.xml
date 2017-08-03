@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 组件扫描 -->
+    <context:component-scan base-package="com.swagger.controller"/>
+
+    <context:component-scan base-package="com.swagger.config"/>
+
+
+    <!-- 注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean -->
+    <mvc:annotation-driven/>
+
+
+    <!-- 在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，
+    它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，就将该请求转由Web应用服务器默认的Servlet处理，
+    如果不是静态资源的请求，才由DispatcherServlet继续处理。 -->
+    <mvc:default-servlet-handler />
+
+    <!-- location元素表示webapp目录下的static包下的所有文件；
+    mapping元素表示以/static开头的所有请求路径，如/static/a 或者/static/a/b；
+    该配置的作用是：DispatcherServlet不会拦截以/static开头的所有请求路径，并当作静态资源
+    交由Servlet处理。 -->
+    <!--<mvc:resources location="/static/" mapping="/static/**" />-->
+
+    <!-- 返回请求页面 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 文件上传 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8" />
+        <property name="maxUploadSize" value="1048576000" />
+        <property name="maxInMemorySize" value="40960000" />
+    </bean>
+
+</beans>
