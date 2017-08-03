@@ -3,11 +3,9 @@ package com.swagger.controller;
 import com.swagger.entity.User;
 import com.swagger.service.UserService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -29,8 +27,7 @@ public class UserController {
     @RequestMapping(
             value = "/add", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ApiOperation(value = "添加用户", httpMethod = "POST", notes = "add user")
-    public Map<String, String> addUser(@ApiParam(required = true, name = "postData", value = "用户信息json数据") @RequestParam(
-            value = "postData") User user, HttpServletRequest request)
+    public Map<String, String> addUser(User user, HttpServletRequest request)
     {
         Map<String, String> map = new HashMap<String, String>();
         try {

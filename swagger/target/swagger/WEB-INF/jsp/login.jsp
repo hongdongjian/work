@@ -12,7 +12,7 @@
 <c:if test="${!empty error}">
     <c:out value="${error}"/>
 </c:if>
-<form action="<c:url value="/loginCheck"/>" method="post">
+<form action="/loginCheck.html" method="post">
     用户名:
     <input type="text" name="userName" />
     <br/>
