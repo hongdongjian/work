@@ -1,7 +1,7 @@
 package com.swagger.entity;
 
 
-import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +12,11 @@ import javax.persistence.Id;
  * Created by hongdongjian on 2017/8/2.
  */
 @Entity
-@ApiModel("登陆请求参数")
+//@ApiModel("登陆请求参数")
 public class User {
     private Integer id;
 
-//    @ApiModelProperty(value = "2",required = true)
+    @ApiModelProperty(value = "2",example = "name",required = true)
     private String username;
 //    @ApiModelProperty(value = "1",required = true)
     private String password;

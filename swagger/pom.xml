@@ -127,6 +127,12 @@
           <version>2.5.0</version>
       </dependency>
 
+      <!-- wagger官方例子 -->
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-petstore</artifactId>
+          <version>2.5.0</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>swagger</finalName>

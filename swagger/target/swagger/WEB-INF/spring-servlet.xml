@@ -17,6 +17,8 @@
 
     <context:component-scan base-package="com.swagger.config"/>
 
+    <context:component-scan base-package="springfox.petstore.controller"/>
+
 
     <!-- 注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean -->
     <mvc:annotation-driven/>
