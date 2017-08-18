@@ -1,0 +1,41 @@
+.swiper_dj {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+.swiper_dj ul {
+    list-style: none;
+    position: absolute;
+}
+.swiper_dj ul li {
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+.swiper_dj .swiperButton {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+.swiper_dj .swiperButton span {
+    background-color: white;
+    border-radius:50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+.swiper_dj .swiperButton span.active {
+    background-color: #b51e30;
+}
+.swiper_dj .swiperSwitch {
+    position: absolute;
+}
+.swiper_dj .swiperSwitch a{
+    display: block;
+}
+.swiper_dj .swiperSwitch img {
+    width: 100%;
+    height:100%;
+}
