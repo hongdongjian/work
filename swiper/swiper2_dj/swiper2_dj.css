@@ -12,12 +12,12 @@
     float: left;
     overflow: hidden;
 }
-.swiper2_dj .swiperButton {
+.swiper2_dj .swiper2Button {
     position: absolute;
     width: 100%;
     text-align: center;
 }
-.swiper2_dj .swiperButton span {
+.swiper2_dj .swiper2Button span {
     background-color: white;
     border-radius:50%;
     -moz-border-radius: 50%;
@@ -26,7 +26,7 @@
     float: left;
     cursor: pointer;
 }
-.swiper2_dj .swiperButton span.active {
+.swiper2_dj .swiper2Button span.active {
     background-color: #b51e30;
 }
 .swiper2_dj .swiper2Switch {

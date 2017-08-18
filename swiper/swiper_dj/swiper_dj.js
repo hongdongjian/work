@@ -16,7 +16,7 @@ swiper_dj.param = {
     span_top : 500, //轮播图小圆圈到轮播图顶部的距离
     switch_width : 44, //轮播图左右切换按钮的宽度
     switch_space : 40, //左右切换相对两边的间距
-    time : 10000
+    time : 3000
 };
 swiper_dj.data = {
     index : 0, //当前的第几张图片，从0开始
@@ -55,8 +55,10 @@ swiper_dj.css = function () {
     $swiperSwitch.css("width",data.width);
     $swiper_prev.css("width",data.switch_width);
     $swiper_prev.css("margin-left",data.switch_space);
+    $swiper_prev.css("float","left");
     $swiper_next.css("width",data.switch_width);
     $swiper_next.css("margin-right",data.switch_space);
+    $swiper_next.css("float","right");
 };
 swiper_dj.removePx = function (data) { //如果又px去掉px，返回数字
     if (data.substring(data.length-2,data.length) === "px") {

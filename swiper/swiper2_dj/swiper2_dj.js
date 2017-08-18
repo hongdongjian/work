@@ -2,7 +2,7 @@ var swiper2_dj = {};
 var $swiper2 = $(".swiper2_dj");
 var $swiper2_ul =  $(".swiper2_dj ul");
 var $swiper2_li =  $(".swiper2_dj ul li");
-var $swiper2Button =  $(".swiper2_dj .swiperButton");
+var $swiper2Button =  $(".swiper2_dj .swiper2Button");
 var $swiper2_span;
 var $swiper2Switch = $(".swiper2_dj .swiper2Switch");
 var $swiper2_prev = $(".swiper2_dj .swiper2Switch .prev");
@@ -13,33 +13,55 @@ swiper2_dj.param = {
     num : $swiper2_li.length, //轮播图的数量
     span_width : 13, //轮播图小圆圈的直径
     span_space : 20, //轮播图小圆圈直接的间距
-    span_top : 500, //轮播图小圆圈到轮播图顶部的距离
+    span_top : 350, //轮播图小圆圈到轮播图顶部的距离
     switch_width : 44, //轮播图左右切换按钮的宽度
     switch_space : $(window).width()*0.23, //左右切换相对两边的间距
-    time : 3000,
-    show_percent : 0.54,
-    show_space : 70
+    time : 3000, //轮播切换的时间间隔
+    show_percent : 0.54, //突出的轮播图所占长度的比例
+    show_space : 70 //突出的轮播图和两边的轮播图的间隔
 };
 swiper2_dj.data = {
     index : 3, //当前的第几张图片，从0开始
     flag : false, //标志位，
-    lock: false //锁
+    lock: false, //锁
+    time: null //计时器
 };
+//左右边轮播图的样式
 swiper2_dj.lrCss = {
     height : swiper2_dj.param.height*0.9,
     marginTop : swiper2_dj.param.height*0.05,
     opacity : 0.7
 };
+//突出的轮播图的样式
 swiper2_dj.midCss = {
     height : swiper2_dj.param.height,
     marginTop: 0,
     opacity : 1
 };
+//传入第几张图，得到这张图的偏移量
 swiper2_dj.getLeft = function (index) {
     var left = index * (swiper2_dj.param.width * swiper2_dj.param.show_percent + swiper2_dj.param.show_space) + swiper2_dj.param.show_space;
     left = left - swiper2_dj.param.width*(1.0-swiper2_dj.param.show_percent)/2.0;
     return -left;
 };
+swiper2_dj.changeSpanActive = function (index) { //改变小圆圈的选中状态
+    $swiper2_span.siblings(".active").removeClass("active");
+    $swiper2_span.eq(index).addClass("active");
+};
+swiper2_dj.removePx = function (data) { //如果又px去掉px，返回数字
+    if (data.substring(data.length-2,data.length) === "px") {
+        return parseInt(data.substring(0,data.length-2));
+    }
+    return parseInt(data);
+};
+// 没有动画的改变样式，传进突出那张图的Index
+swiper2_dj.changeCss = function (index) {
+    $swiper2_li.eq(index-1).css(swiper2_dj.lrCss);
+    $swiper2_li.eq(index).css(swiper2_dj.midCss);
+    $swiper2_li.eq(index+1).css(swiper2_dj.lrCss);
+    $swiper2_ul.css("left",swiper2_dj.getLeft(index));
+};
+//初始化css样式
 swiper2_dj.css = function () {
     var data = swiper2_dj.param;
     var li_width = data.width * data.show_percent;
@@ -51,7 +73,7 @@ swiper2_dj.css = function () {
     for (var i=0; i< data.num; i++) {
         $swiper2Button.append("<span data-id='"+ i +"'></span>"); //添加小圆圈
     }
-    $swiper2_span = $(".swiper2_dj .swiperButton span");
+    $swiper2_span = $(".swiper2_dj .swiper2Button span");
     $swiper2_span.eq(0).addClass("active"); //第一个小圆圈为选中状态
     $swiper2.css("width", data.width); //设置轮播图的宽
     $swiper2.css("height", data.height); //设置轮播图的高
@@ -80,18 +102,17 @@ swiper2_dj.css = function () {
     $swiper2_next.css("float","right");
     $swiper2_next.css("width",data.switch_width);
     $swiper2_next.css("margin-right",data.switch_space);
-    $swiper2_li.eq(swiper2_dj.data.index - 1).css(swiper2_dj.lrCss);
+    $swiper2_li.eq(swiper2_dj.data.index - 1).css(swiper2_dj.lrCss); //左右两张轮播图的样式
     $swiper2_li.eq(swiper2_dj.data.index + 1).css(swiper2_dj.lrCss);
+    swiper2_dj.changeSpanActive(swiper2_dj.data.index - 2); //小圆圈的样式
 };
-swiper2_dj.removePx = function (data) { //如果又px去掉px，返回数字
-    if (data.substring(data.length-2,data.length) === "px") {
-        return parseInt(data.substring(0,data.length-2));
-    }
-    return parseInt(data);
-};
-swiper2_dj.animate = function(offset) {
-    if (swiper2_dj.data.lock === true) {
+// 动画 offset 负数，向左滑动，正数，向右滑动。clickflag true,点击时的切换，false，定时切换
+swiper2_dj.animate = function(offset,clickflag) {
+    if (swiper2_dj.data.lock === true) { //如果正在动画就直接返回，保证同一时间只有一个动画
         return;
+    }
+    if (clickflag) {
+        clearTimeout(swiper2_dj.data.time); //如果是点击，去掉定时
     }
     swiper2_dj.data.lock = true;
     if (offset < 0) {
@@ -107,31 +128,48 @@ swiper2_dj.animate = function(offset) {
         var index = swiper2_dj.data.index;
         if (index === 1) {
             swiper2_dj.data.index = swiper2_dj.param.num + 1;
-            $swiper2_li.eq(swiper2_dj.data.index-1).css(swiper2_dj.lrCss);
-            $swiper2_li.eq(swiper2_dj.data.index).css(swiper2_dj.midCss);
-            $swiper2_li.eq(swiper2_dj.data.index+1).css(swiper2_dj.lrCss);
-            $swiper2_ul.css("left",swiper2_dj.getLeft(swiper2_dj.data.index));
+            swiper2_dj.changeCss(swiper2_dj.data.index);
         } else if (index === swiper2_dj.param.num + 2) {
             swiper2_dj.data.index = 2;
-            $swiper2_li.eq(swiper2_dj.data.index-1).css(swiper2_dj.lrCss);
-            $swiper2_li.eq(swiper2_dj.data.index).css(swiper2_dj.midCss);
-            $swiper2_li.eq(swiper2_dj.data.index+1).css(swiper2_dj.lrCss);
-            $swiper2_ul.css("left",swiper2_dj.getLeft(swiper2_dj.data.index));
+            swiper2_dj.changeCss(swiper2_dj.data.index);
         }
+        swiper2_dj.changeSpanActive(swiper2_dj.data.index - 2);
         if (swiper2_dj.data.lock === true) {
             swiper2_dj.data.lock = false;
         }
+        if (clickflag) {
+            swiper2_dj.data.flag = false;
+           swiper2_dj.timeCount();
+        }
     });
+};
+
+swiper2_dj.timeCount = function(){
+    if (swiper2_dj.data.flag) {
+        swiper2_dj.animate(-1);
+    }
+    swiper2_dj.data.flag = true;
+    swiper2_dj.data.time = setTimeout(swiper2_dj.timeCount,swiper2_dj.param.time);
 };
 swiper2_dj.init = function () {
     swiper2_dj.css();
-
     $swiper2_prev.click(function () {
-        swiper2_dj.animate(1);
+        swiper2_dj.animate(1,true);
     });
-
     $swiper2_next.click(function () {
-        swiper2_dj.animate(-1);
+        swiper2_dj.animate(-1,true);
     });
+    $swiper2_span.click(function () {
+        if (swiper2_dj.data.lock)
+            return;
+        clearTimeout(swiper2_dj.data.time);
+        var index = parseInt($(this).attr("data-id")) + 1;
+        swiper2_dj.data.index = index;
+        swiper2_dj.changeCss(swiper2_dj.data.index);
+        swiper2_dj.changeSpanActive(swiper2_dj.data.index);
+        swiper2_dj.flag = false;
+        swiper2_dj.timeCount();
+    });
+    swiper2_dj.timeCount();
 };
 swiper2_dj.init();
