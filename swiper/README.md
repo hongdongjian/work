@@ -1,4 +1,7 @@
 ### 这是个轮播图插件
+
+##### 使用方式可查看两个文件中index.html里的示例
+
 ##### swiper1_dj : 这是个普通的轮播图，效果图如下，可定时轮播，也可手动调到制定的轮播图
 ![swiper1](https://github.com/tobealeader/work/blob/master/swiper/swiper1.png)
 
