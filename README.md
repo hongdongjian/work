@@ -9,3 +9,5 @@
 * 为了让前后端更好的分离，spring项目上集成了swagger, 项目查看[swagger](https://github.com/tobealeader/work/tree/master/swagger)
 
 * SpringBoot，便于spring搭建，项目查看[SpringBoot](https://github.com/tobealeader/work/tree/master/SpringBoot)
+
+* 使用javax.mail发送邮件，项目查看[Mail](https://github.com/tobealeader/work/tree/master/Mail)
