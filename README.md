@@ -10,4 +10,6 @@
 
 * SpringBoot，便于spring搭建，项目查看[SpringBoot](https://github.com/tobealeader/work/tree/master/SpringBoot)
 
+* 纯css,js写的轮播插件，兼容ie8，项目可查看[swiper](https://github.com/tobealeader/work/tree/master/swiper)
+
 * 使用javax.mail发送邮件，项目查看[Mail](https://github.com/tobealeader/work/tree/master/Mail)
