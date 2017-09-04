@@ -1,11 +1,13 @@
 .swiper_dj {
-    width: 100%;
+    margin: 0;
+    min-width: 1336px;
     overflow-x: hidden;
+    overflow-y: hidden;
     position: relative;
 }
 .swiper_dj ul {
     list-style: none;
-    position: absolute;
+    position: relative;
 }
 .swiper_dj ul li {
     display: block;
@@ -25,6 +27,7 @@
     display: block;
     float: left;
     cursor: pointer;
+    border: 1px solid #b51e30;
 }
 .swiper_dj .swiperButton span.active {
     background-color: #b51e30;

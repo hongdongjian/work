@@ -9,6 +9,7 @@ var $swiper2_prev = $(".swiper2_dj .swiper2Switch .prev");
 var $swiper2_next = $(".swiper2_dj .swiper2Switch .next");
 swiper2_dj.param = {
     width : $(window).width(), //轮播宽度
+    min_width : 1336, // 轮播最小宽度
     height :  400, //轮播高度
     num : $swiper2_li.length, //轮播图的数量
     span_width : 13, //轮播图小圆圈的直径
@@ -61,18 +62,35 @@ swiper2_dj.changeCss = function (index) {
     $swiper2_li.eq(index+1).css(swiper2_dj.lrCss);
     $swiper2_ul.css("left",swiper2_dj.getLeft(index));
 };
-//初始化css样式
-swiper2_dj.css = function () {
+// 首尾各添加连两个li
+swiper2_dj.dom = function() {
     var data = swiper2_dj.param;
-    var li_width = data.width * data.show_percent;
     $swiper2_ul.prepend("<li>" + $swiper2_li.eq(data.num-1).html() + "</li>");
     $swiper2_ul.append("<li>" + $swiper2_li.eq(0).html() + "</li>");
     $swiper2_ul.prepend("<li>" + $swiper2_li.eq(data.num-2).html() + "</li>");
     $swiper2_ul.append("<li>" + $swiper2_li.eq(1).html() + "</li>");
-    $swiper2_li = $(".swiper2_dj ul li");
     for (var i=0; i< data.num; i++) {
         $swiper2Button.append("<span data-id='"+ i +"'></span>"); //添加小圆圈
     }
+};
+
+//初始化css样式
+swiper2_dj.css = function () {
+    var data = swiper2_dj.param;
+
+    //当小于最小宽度时，使用最小宽度
+    var winWidth = $(window).width();
+    if(winWidth < data.min_width){
+        data.width = data.min_width;
+    }else{
+        data.width = winWidth;
+    }
+    //data.switch_space = data.width * 0.23;
+    data.switch_space = data.width * 0.14;
+
+    var li_width = data.width * data.show_percent;
+
+    $swiper2_li = $(".swiper2_dj ul li");
     $swiper2_span = $(".swiper2_dj .swiper2Button span");
     $swiper2_span.eq(0).addClass("active"); //第一个小圆圈为选中状态
     $swiper2.css("width", data.width); //设置轮播图的宽
@@ -139,19 +157,20 @@ swiper2_dj.animate = function(offset,clickflag) {
         }
         if (clickflag) {
             swiper2_dj.data.flag = false;
-           swiper2_dj.timeCount();
+            swiper2_dj.timeCount();
         }
     });
 };
 
-swiper2_dj.timeCount = function(){
+swiper2_dj.timeCount = function(){ //定时轮播
     if (swiper2_dj.data.flag) {
         swiper2_dj.animate(-1);
     }
     swiper2_dj.data.flag = true;
     swiper2_dj.data.time = setTimeout(swiper2_dj.timeCount,swiper2_dj.param.time);
 };
-swiper2_dj.init = function () {
+swiper2_dj.init = function () { //初始化
+    swiper2_dj.dom();
     swiper2_dj.css();
     $swiper2_prev.click(function () {
         swiper2_dj.animate(1,true);
@@ -172,4 +191,7 @@ swiper2_dj.init = function () {
     });
     swiper2_dj.timeCount();
 };
+$(window).resize(function(){ //每当窗口发生变化时，重新渲染css
+    swiper2_dj.css();
+});
 swiper2_dj.init();

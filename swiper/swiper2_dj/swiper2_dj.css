@@ -1,6 +1,7 @@
 .swiper2_dj {
     width: 100%;
     overflow-x: hidden;
+    overflow-y: hidden;
     position: relative;
 }
 .swiper2_dj ul {
