@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.dui-numbox {
+    width: 52px;
+    height: 30px;
+    padding: 0 42px 0 40px;
+    position: relative;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+}
+.dui-numbox-btn {
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    border-width: 0;
+    outline: none;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+}
+.dui-numbox-minux {
+    left: 0;
+}
+.dui-numbox-plus {
+    right: 0;
+    top: 0;
+}
+.dui-numbox-input {
+    border-width: 0;
+    outline: none;
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+}
