@@ -1,0 +1,44 @@
+.swiper_dj {
+    margin: 0;
+    min-width: 1336px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+.swiper_dj ul {
+    list-style: none;
+    position: relative;
+}
+.swiper_dj ul li {
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+.swiper_dj .swiperButton {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+.swiper_dj .swiperButton span {
+    background-color: white;
+    border-radius:50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: block;
+    float: left;
+    cursor: pointer;
+    border: 1px solid #b51e30;
+}
+.swiper_dj .swiperButton span.active {
+    background-color: #b51e30;
+}
+.swiper_dj .swiperSwitch {
+    position: absolute;
+}
+.swiper_dj .swiperSwitch a{
+    display: block;
+}
+.swiper_dj .swiperSwitch img {
+    width: 100%;
+    height:100%;
+}
