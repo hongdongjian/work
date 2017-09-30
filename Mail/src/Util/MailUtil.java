@@ -90,7 +90,7 @@ public class MailUtil {
             contentPart.setContent(mail.getContent(), "text/html;charset=UTF-8");
             multipart.addBodyPart(contentPart);
 
-            // 遍历添加附件
+            // 添加附件
             if (mail.getFile() != null) {
                 System.out.println("exit file");
                 File file = mail.getFile();
