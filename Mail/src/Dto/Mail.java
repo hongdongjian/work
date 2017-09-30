@@ -1,9 +1,12 @@
 package Dto;
 
+import java.io.File;
+
 public class Mail {
     String toMails[];
     String subject;
     String content;
+    File file;
 
     public String[] getToMails() {
         return toMails;
@@ -27,5 +30,13 @@ public class Mail {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }
