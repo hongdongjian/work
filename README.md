@@ -6,8 +6,6 @@
 
 * 因为项目需要，pad上需要自定义键盘，项目查看[IOS-KeyBoard](https://github.com/tobealeader/work/tree/master/IOS-KeyBoard)
 
-* 为了让前后端更好的分离，spring项目上集成了swagger, 项目查看[swagger](https://github.com/tobealeader/work/tree/master/swagger)
-
 * SpringBoot，便于spring搭建，项目查看[SpringBoot](https://github.com/tobealeader/work/tree/master/SpringBoot)
 
 * 纯css,js写的轮播插件，兼容ie8，项目查看[swiper](https://github.com/tobealeader/work/tree/master/swiper)
@@ -19,3 +17,5 @@
 * 保存工作写的一些java工具类，项目可查看[UtilTool](https://github.com/tobealeader/work/tree/master/UtilTool)
 
 * 前端控件，项目可查看[DUI](https://github.com/tobealeader/work/tree/master/DUI)
+
+* web打印，基于lodop实现，项目可查看[WebPrint](https://github.com/tobealeader/work/tree/master/DUI)
