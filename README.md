@@ -18,4 +18,4 @@
 
 * 前端控件，项目可查看[DUI](https://github.com/tobealeader/work/tree/master/DUI)
 
-* web打印，基于lodop实现，项目可查看[WebPrint](https://github.com/tobealeader/work/tree/master/DUI)
+* web打印，基于lodop实现，项目可查看[WebPrint](https://github.com/tobealeader/work/tree/master/WebPrint)
