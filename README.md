@@ -20,4 +20,4 @@
 
 * web打印，基于lodop实现，项目可查看[WebPrint](https://github.com/tobealeader/work/tree/master/WebPrint)
 
-* leet_code热门100道题，项目可查看[leet_code](https://github.com/tobealeader/work/tree/master/leet_code)
+* leet_code热门100道题，项目可查看[leet_code](https://github.com/tobealeader/work/tree/master/leetcode)
